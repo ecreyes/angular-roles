@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RoleEnum } from '../enum/RoleEnum';
 
 
 @Injectable({
@@ -22,10 +23,10 @@ export class RoleService {
 
     private getFakeData(option: number): any {
         if (option === 1) {
-            this.roleText$.next('ADMIN');
+            this.roleText$.next(RoleEnum.ADMIN);
             return {
                 roles: [
-                    'ADMIN'
+                    RoleEnum.ADMIN
                 ],
                 permissions: [
                     'read_users',
@@ -36,10 +37,10 @@ export class RoleService {
             }
         }
         if (option === 2) {
-            this.roleText$.next('USER');
+            this.roleText$.next(RoleEnum.USER);
             return {
                 roles: [
-                    'USER'
+                    RoleEnum.USER
                 ],
                 permissions: [
                     'read_users',
@@ -47,10 +48,10 @@ export class RoleService {
             }
         }
         if (option === 3) {
-            this.roleText$.next('GUEST');
+            this.roleText$.next(RoleEnum.GUEST);
             return {
                 roles: [
-                    'GUEST'
+                    RoleEnum.GUEST
                 ],
                 permissions: []
             }

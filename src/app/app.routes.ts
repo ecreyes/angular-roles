@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { HomeComponent } from "./pages/home/home.component";
 import { UserComponent } from './pages/user/user.component';
+import { RoleEnum } from './enum/RoleEnum';
 
 const APP_ROUTES: Routes = [
     {
@@ -13,7 +14,8 @@ const APP_ROUTES: Routes = [
         canActivate: [NgxPermissionsGuard],
         data: {
             permissions: {
-                only: ['ADMIN','USER']
+                only: [RoleEnum.ADMIN, RoleEnum.USER],
+                redirectTo: 'home'
             }
         }
     },

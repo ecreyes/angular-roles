@@ -1,40 +1,51 @@
-<div class="container mt-4">
-    <h3>Usuarios</h3>
-    <button *ngxPermissionsOnly="['ADMIN']" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalUser"
-        (click)="createUser()">Crear</button>
-    <hr>
-    <br>
-    <table class="table table-striped">
-        <thead class="table-primary">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users$ | async">
-                <th scope="row">{{user.id}}</th>
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>
-                    <button *ngxPermissionsOnly="['ADMIN']" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUser"
-                        (click)="editUser(user.id)">Editar</button>
-                    <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#userShow"
-                        (click)="showUser(user)">Ver</button>
-                    <button *ngxPermissionsOnly="['ADMIN']" class="btn btn-outline-danger" (click)="deleteUser(user.id)" [disabled]="isLoading">
-                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"
-                            aria-hidden="true"></span>
-                        Eliminar
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<ng-container *ngxPermissionsOnly="[ROLES.ADMIN,ROLES.USER]">
+    <div class="container mt-4">
+        <h3>Usuarios</h3>
+        <button *ngxPermissionsOnly="[ROLES.ADMIN]" type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+            data-bs-target="#modalUser" (click)="createUser()">Crear</button>
+        <hr>
+        <br>
+        <table class="table table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users$ | async">
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <button *ngxPermissionsOnly="[ROLES.ADMIN]" class="btn btn-outline-primary"
+                            data-bs-toggle="modal" data-bs-target="#modalUser"
+                            (click)="editUser(user.id)">Editar</button>
+                        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#userShow"
+                            (click)="showUser(user)">Ver</button>
+                        <button *ngxPermissionsOnly="[ROLES.ADMIN]" class="btn btn-outline-danger"
+                            (click)="deleteUser(user.id)" [disabled]="isLoading">
+                            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
-<app-user-modal [mode]="mode" [data]="data" (sendEvent)="actionModal($event)"></app-user-modal>
+    <app-user-modal [mode]="mode" [data]="data" (sendEvent)="actionModal($event)"></app-user-modal>
 
-<app-user-show [user]="userSelected"></app-user-show>
+    <app-user-show [user]="userSelected"></app-user-show>
+</ng-container>
+<ng-container *ngxPermissionsExcept="[ROLES.ADMIN,ROLES.USER]">
+    <div class="container mt-4">
+        <div class="alert alert-danger" role="alert">
+            Lo sentimos no tiene acceso a esta sección.
+        </div>
+    </div>
+</ng-container>

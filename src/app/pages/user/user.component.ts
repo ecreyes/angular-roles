@@ -6,11 +6,12 @@ import { shareReplay } from 'rxjs/operators';
 import { UserModalMode } from 'src/app/components/user-modal/user-modal.types';
 
 import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
+import { BaseRole } from 'src/app/base/BaseRole.class';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
 })
-export class UserComponent {
+export class UserComponent extends BaseRole {
   public users$: Observable<User[]>;
   public isLoading = false;
 
@@ -26,6 +27,7 @@ export class UserComponent {
 
   constructor(
     private userSrv: UserService) {
+      super();
     this.users$ = this.userSrv.getUserList$().pipe(shareReplay());
   }
 

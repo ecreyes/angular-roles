@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // routes
 import { APP_ROUTING } from "./app.routes";
@@ -52,7 +52,7 @@ const SERVICES = [
     NgxPermissionsModule.forRoot()
   ],
   providers: [
-    ...SERVICES
+    ...SERVICES,
   ],
   bootstrap: [AppComponent]
 })
