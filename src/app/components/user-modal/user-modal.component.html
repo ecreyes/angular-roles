@@ -1,0 +1,34 @@
+<!-- Modal -->
+<div [formGroup]="form" class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{getModeText()}} usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="id" formControlName="id" placeholder="ID">
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="email" formControlName="email"
+                        placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="desc" formControlName="desc" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()">{{getModeText()}}</button>
+            </div>
+        </div>
+    </div>
+</div>

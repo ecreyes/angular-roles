@@ -1,0 +1,42 @@
+.btn-danger {
+    color: $color-white;
+    &:hover {
+        color: $color-white;
+    }
+    &:focus {
+        color:$color-white
+    }
+}
+
+.btn-outline-danger{
+    &:active{
+        color:$color-white;
+    }
+    &:hover{
+        color:$color-white;
+    }
+}
+
+.btn-outline-info{
+    &:active{
+        color:$color-white;
+    }
+    &:hover{
+        color:$color-white;
+    }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: $danger-color;
+}
+
+.nav-link{
+    color: $color-white;
+    &:hover {
+        color: $color-white;
+    }
+    &:focus {
+        color:$color-white
+    }
+}
