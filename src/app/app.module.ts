@@ -31,10 +31,12 @@ const PAGES = [
 // services
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
+import { WorkspaceService } from './services/workspace.service';
 
 const SERVICES = [
   UserService,
-  RoleService
+  RoleService,
+  WorkspaceService
 ];
 
 @NgModule({

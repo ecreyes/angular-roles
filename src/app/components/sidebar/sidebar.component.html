@@ -6,7 +6,16 @@
         <span class="fs-4">Haulmer</span>
     </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column mb-auto" [formGroup]="form">
+        <select class="form-select my-2" formControlName="workspaceId">
+            <option [value]="workspace.workspaceId" *ngFor="let workspace of workspaceList">{{workspace.workspaceName}}</option>
+        </select>
+
+        <select class="form-select my-2" formControlName="serviceId">
+            <option [value]="service.id" *ngFor="let service of serviceList">{{service.serviceName}}</option>
+        </select>
+
+        <!--<pre>{{form.value | json }}</pre>-->
         <li class="nav-item">
             <a [routerLink]="['home']" routerLinkActive="active" class="nav-link" aria-current="page">
                 <svg class="bi me-2" width="16" height="16">
@@ -27,17 +36,12 @@
     <hr>
     <div class="dropdown">
         <div class="d-flex flex-row align-items-center">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/ecreyes.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>Edu</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><div class="dropdown-item" (click)="setRoles(1)">ADMIN</div></li>
-            <li><div class="dropdown-item" (click)="setRoles(2)">USER</div></li>
-            <li><div class="dropdown-item" (click)="setRoles(3)">GUEST</div></li>
-        </ul>
-        <span class="badge rounded-pill bg-danger">{{roleText$ | async}}</span>
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none"
+                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/ecreyes.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Edu</strong>
+            </a>
+            <span class="badge rounded-pill bg-danger">{{roleText$ | async}}</span>
         </div>
     </div>
 </div>

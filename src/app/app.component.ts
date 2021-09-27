@@ -8,11 +8,4 @@ import { RoleService } from './services/role.service';
 })
 export class AppComponent {
 
-  constructor(
-    private ngxRoleService: NgxRolesService,
-    private roleSrv: RoleService) {
-    this.roleSrv.getRoleById(1).subscribe(data => {
-      this.ngxRoleService.addRoleWithPermissions(data.roles[0],data.permissions);
-    })
-  }
 }

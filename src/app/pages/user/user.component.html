@@ -1,7 +1,7 @@
 <ng-container *ngxPermissionsOnly="[ROLES.ADMIN,ROLES.USER]">
     <div class="container mt-4">
         <h3>Usuarios</h3>
-        <button *ngxPermissionsOnly="[ROLES.ADMIN]" type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+        <button *ngxPermissionsOnly="['create_users']" type="button" class="btn btn-outline-success" data-bs-toggle="modal"
             data-bs-target="#modalUser" (click)="createUser()">Crear</button>
         <hr>
         <br>
@@ -20,12 +20,12 @@
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>
-                        <button *ngxPermissionsOnly="[ROLES.ADMIN]" class="btn btn-outline-primary"
+                        <button *ngxPermissionsOnly="['update_users']" class="btn btn-outline-primary"
                             data-bs-toggle="modal" data-bs-target="#modalUser"
                             (click)="editUser(user.id)">Editar</button>
-                        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#userShow"
+                        <button *ngxPermissionsOnly="['read_users']" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#userShow"
                             (click)="showUser(user)">Ver</button>
-                        <button *ngxPermissionsOnly="[ROLES.ADMIN]" class="btn btn-outline-danger"
+                        <button *ngxPermissionsOnly="['delete_users']" class="btn btn-outline-danger"
                             (click)="deleteUser(user.id)" [disabled]="isLoading">
                             <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"
                                 aria-hidden="true"></span>

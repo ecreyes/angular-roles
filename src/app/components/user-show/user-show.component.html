@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <p>{{user.id}} - {{user.name}}</p>
                 <p>{{user.email}}</p>
-                <p>{{user.desc}}</p>
+                <p *ngxPermissionsOnly="[ROLES.ADMIN]">{{user.desc}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
