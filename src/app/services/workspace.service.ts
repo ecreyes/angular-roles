@@ -33,7 +33,7 @@ export class WorkspaceService {
     }
 
     public getServiceByWorkspace(workspaceId: number): Observable<any> {
-        return this.http.get('https://jsonplaceholder.typicode.com/posts/1').pipe(
+        return this.http.get('https://jsonplaceholder.typicode.com/posts/3').pipe(
             map(() => {
                 if (workspaceId === 1) {
                     return [
