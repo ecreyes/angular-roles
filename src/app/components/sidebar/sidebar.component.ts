@@ -33,10 +33,10 @@ export class SidebarComponent extends BaseRole implements OnInit {
       map(value => Number(value)),
       switchMap(value => this.workspaceSrv.getServiceByWorkspace(value))
     ).subscribe(res => {
-      this.form.get('serviceId')?.setValue('');
       this.ngxRoleService.flushRolesAndPermissions();
       this.roleSrv.roleText$.next('');
       this.serviceList = res;
+      this.form.get('serviceId')?.setValue(this.serviceList[0].id);
     });
 
 
