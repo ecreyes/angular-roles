@@ -32,18 +32,27 @@ const PAGES = [
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
 import { WorkspaceService } from './services/workspace.service';
+import { DisabledPermissionService } from './services/disabled-permission.service';
 
 const SERVICES = [
   UserService,
   RoleService,
-  WorkspaceService
+  WorkspaceService,
+  DisabledPermissionService
+];
+
+// pipes
+import { PermissionPipe } from './pipes/permission.pipe';
+const PIPES = [
+  PermissionPipe
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ...COMPONENTS,
-    ...PAGES
+    ...PAGES,
+    ...PIPES
   ],
   imports: [
     BrowserModule,

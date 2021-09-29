@@ -5,11 +5,14 @@ import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 import { UserModalMode } from 'src/app/components/user-modal/user-modal.types';
 
-import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
 import { BaseRole } from 'src/app/base/BaseRole.class';
+import { DisabledPermissionService, DisabledType, DisabledOptionType, DisableTypeEnum } from 'src/app/services/disabled-permission.service';
+import { PermissionPipe } from 'src/app/pipes/permission.pipe';
+import { map, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html'
+  templateUrl: './user.component.html',
+  providers: [PermissionPipe]
 })
 export class UserComponent extends BaseRole {
   public users$: Observable<User[]>;
@@ -17,6 +20,8 @@ export class UserComponent extends BaseRole {
 
   public mode: UserModalMode = 'create';
   public data: User | any = null;
+
+  public loadingDemo = false;
 
   public userSelected: User = {
     id: 1,
@@ -26,8 +31,11 @@ export class UserComponent extends BaseRole {
   };
 
   constructor(
-    private userSrv: UserService) {
-      super();
+    private userSrv: UserService,
+    private disabledPermissionService: DisabledPermissionService,
+    private permissionPipe: PermissionPipe,
+  ) {
+    super();
     this.users$ = this.userSrv.getUserList$().pipe(shareReplay());
   }
 
@@ -60,6 +68,16 @@ export class UserComponent extends BaseRole {
 
   public showUser(user: User): void {
     this.userSelected = user;
+  }
+
+  public enabled$(permList: string[], type: DisabledType, option: DisabledOptionType): Observable<boolean> {
+    return this.disabledPermissionService.enabled$(permList, type, option);
+  }
+
+  public getDisabled(): Observable<boolean> {
+    return this.permissionPipe.transform(['ADMIN'], DisableTypeEnum.PERM).pipe(
+      map(res => res && !this.loadingDemo)
+    );
   }
 
 
